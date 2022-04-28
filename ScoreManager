@@ -1,0 +1,54 @@
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
+
+
+public class ScoreManager : MonoBehaviour
+{
+    public TextMeshProUGUI scoreText;
+    
+    private int score;
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        score = 0;
+        scoreText.text = "Score" + score;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        scoreText.text = score.ToString();
+    }
+
+    void OnTriggerEnter2D(Collider2D target)
+    {
+        if (target.tag == "Rotten")
+            Destroy(target.gameObject); 
+             score--;
+             {
+                 if (target.tag == "Apple")
+                 {
+                     Destroy(target.gameObject);
+                     score++;
+                 }
+                 if (target.tag == "Golden")
+                 {
+                     Destroy(target.gameObject);
+                     score++;
+                 }
+             }
+             
+    }
+    
+     void OnTriggerExit2D(Collider2D target)
+     {
+         if (target.tag == "Apple")
+         {
+             Destroy(target.gameObject);
+             score++;
+         }
+     }
+}
